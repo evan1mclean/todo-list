@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/normalize.css">
     <link rel="stylesheet" href="./styles/style.css">
     <script src="https://kit.fontawesome.com/0c141d9ac7.js" crossorigin="anonymous"></script>
@@ -26,16 +27,32 @@
 
         </div>
         <div class="sidebar">
-            <div class="filters">
-
-            </div>
-            <div class="projects">
-
-            </div>
-
+            <button class="inbox selected">
+                <i class="fa-solid fa-inbox"></i>
+                Inbox
+            </button>
+            <button class="today">
+                <i class="fa-solid fa-calendar-day"></i>
+                Today
+            </button>
+            <button class="this-week">
+                <i class="fa-solid fa-calendar-week"></i>
+                This Week
+            </button>
+            <h2>Projects</h2>
+            <button class="add-project">
+                <i class="fa-solid fa-plus"></i>
+                Add Project
+            </button>
         </div>
-        <div class="todo-list">
-        
+        <div class="todo-list-container">
+            <div class="todo-list">
+                <h2 class="todo-header">Inbox</h2>
+                <button class="add-task">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Task
+                </button>
+            </div>
         </div>
     </div>
 </body>

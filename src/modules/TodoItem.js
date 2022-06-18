@@ -1,8 +1,9 @@
 export default class TodoItem {
-    constructor(title, description, dueDate, completed) {
+    constructor(title, description, dueDate, priority, completed) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
+        this.priority = priority;
         this.completed = completed;
     }
 
@@ -24,6 +25,18 @@ export default class TodoItem {
 
     setDueDate(newDueDate) {
         this.dueDate = newDueDate;
+    }
+
+    getDueDate() {
+        return this.dueDate;
+    }
+
+    setPriority(newPriority) {
+        this.priority = newPriority;
+    }
+
+    getPriority() {
+        return this.priority;
     }
 
     getCompleted() {

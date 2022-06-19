@@ -68,6 +68,7 @@ button {
     border: none;
     background-color: inherit;
     border-radius: 5px;
+    display: flex;
 }
 
 button i {
@@ -79,12 +80,54 @@ button:hover {
     background-color: #efefef;
 }
 
+.sidebar button .delete-project {
+    visibility: hidden;
+    font-weight: bold;
+    margin-left: auto;
+}
+
+.sidebar button:hover .delete-project {
+    visibility: visible;
+}
+
 button.selected {
     background-color: #efefef;
 }
 
 .sidebar h2 {
     padding: 10px;
+}
+
+.sidebar .add-new-project {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.sidebar .add-new-project input {
+    padding: 10px;
+}
+
+.sidebar .add-new-project .new-project-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.sidebar .confirm-project,
+.sidebar .cancel-project {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.sidebar .confirm-project {
+    background-color: var(--background-color);
+}
+
+.sidebar .cancel-project {
+    background-color: var(--border-color);
 }
 
 .sidebar.collapse {

@@ -1,3 +1,4 @@
+//A class for handling Project object functionality
 export default class Project {
     constructor(title) {
         this.title = title;

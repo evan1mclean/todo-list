@@ -1,3 +1,4 @@
+//A class for handling Todo Item functionality
 export default class TodoItem {
     constructor(title, description, dueDate, priority, completed) {
         this.title = title;

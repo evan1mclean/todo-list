@@ -158,7 +158,8 @@ button.selected {
 }
 
 .hidden {
-    visibility: hidden;
+    opacity: 0;
+    height: 0;
 }
 
 .todo-item {

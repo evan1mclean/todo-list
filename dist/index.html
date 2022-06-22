@@ -27,23 +27,28 @@
 
         </div>
         <div class="sidebar">
-            <button class="inbox selected">
+            <button class="project inbox selected">
                 <i class="fa-solid fa-inbox"></i>
-                Inbox
-            </button>
-            <button class="today">
+                <div class="project-title">Inbox</div>         </button>
+            <button class="project today">
                 <i class="fa-solid fa-calendar-day"></i>
-                Today
-            </button>
-            <button class="this-week">
+                <div class="project-title">Today</div>         </button>
+            <button class="project this-week">
                 <i class="fa-solid fa-calendar-week"></i>
-                This Week
+                <div class="project-title">This Week</div>
             </button>
             <h2>Projects</h2>
             <button class="add-project">
                 <i class="fa-solid fa-plus"></i>
                 Add Project
             </button>
+            <form class="add-new-project hidden">
+                <input type="text" id="new-project" placeholder="Project Name" maxlength="25" required>
+                <div class="new-project-buttons">
+                    <button class="confirm-project" type="submit">Add Project</button>
+                    <button class="cancel-project">Cancel</button>
+                </div>
+            </form>
         </div>
         <div class="todo-list-container">
             <div class="todo-list">

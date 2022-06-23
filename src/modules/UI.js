@@ -1,6 +1,4 @@
-import TodoItem from "./TodoItem";
-import Project from "./Project";
-import TodoList from "./TodoList";
+import Storage from "./Storage";
 
 export default class UI {
     static toggleSidebarVisibility() {

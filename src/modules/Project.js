@@ -5,15 +5,31 @@ export default class Project {
         this.items = [];
     }
 
+    setTitle(newTitle) {
+        this.title = newTitle;
+    }
+
+    getTitle() {
+        return this.title;
+    }
+
     addItemToProject(item) {
         this.items.push(item);
     }
 
     getItemFromProject(item) {
-        return this.items[item];
+        return this.items.find(title => title.title === item);
     }
 
-    removeItemFromProject(item) {
-        this.items.splice(this.items[item], 1);
+    getItems() {
+        return this.items;
+    }
+
+    resetItems() {
+        this.items = [];
+    }
+
+    deleteItemFromProject(item) {
+        this.items.splice(this.items.indexOf(this.getItemFromProject(item)), 1);
     }
 }

@@ -1,4 +1,6 @@
+import TodoItem from "./TodoItem";
 import Storage from "./Storage";
+import { format, isToday } from "date-fns";
 
 export default class UI {
     static toggleSidebarVisibility() {
@@ -30,6 +32,8 @@ export default class UI {
         else {
             addTaskBtn.classList.remove("hidden");
         }
+        UI.clearTasks();
+        UI.displayTasks();
     }
 
     static toggleNewProjectForm(e) {
@@ -60,7 +64,12 @@ export default class UI {
         let duplicatedName = false;
         projects.forEach(button => {
             let projectTitle = button.textContent.trim().split("\n");
-            if (projectTitle[0] === addProjectFormInput.value || projectTitle[0] === renameProjectFormInput.value) {
+            if (renameProjectFormInput) {
+                if (projectTitle[0] === renameProjectFormInput.value) {
+                    duplicatedName = true;
+                }
+            }
+            if (projectTitle[0] === addProjectFormInput.value) {
                 duplicatedName = true;
             }
         })
@@ -206,6 +215,8 @@ export default class UI {
         todoHeader.textContent = "Inbox";
         const addTaskBtn = document.querySelector('.add-task');
         addTaskBtn.classList.add("hidden");
+        UI.clearTasks();
+        UI.displayTasks();
     }
 
     static displayAddTaskModal() {
@@ -225,6 +236,55 @@ export default class UI {
         modal.classList.remove("show-modal");
     }
 
+    static addTask(e) {
+        e.preventDefault();
+        const project = document.querySelector(".todo-header").textContent;
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const dueDate = document.getElementById("dueDate").value.split('-').join('/');
+        const priority = document.getElementById("priority").value;
+        const newItem = new TodoItem(title, project, description, dueDate, priority, false);
+        Storage.addItemToProject(project, newItem);
+        UI.closeAddTaskModal(e);
+        UI.clearTasks();
+        UI.displayTasks();
+    }
+
+    static taskTemplate(title, dueDate) {
+        const todoContainer = document.querySelector('.todo-list');
+        const addTaskBtn = document.querySelector('.add-task');
+        const newItem = document.createElement('div');
+        newItem.classList.add('todo-item');
+        newItem.innerHTML = `<input type="checkbox" id="completed">
+        <p>${title}</p>
+        <button class="item-details">Details</button>
+        <p>${dueDate}</p>
+        <i class="fa-solid fa-pen-to-square"></i>
+        <i class="fa-solid fa-trash-can"></i>`;
+        if (addTaskBtn.classList.contains("hidden")) {
+            todoContainer.appendChild(newItem);
+        }
+        else {
+            todoContainer.insertBefore(newItem, addTaskBtn);
+        }
+    }
+
+    static displayTasks() {
+        const projectTitle = document.querySelector('.todo-header').textContent;
+        const project = Storage.getTodoList().getProject(projectTitle);
+        const tasks = project.getItems();
+        tasks.forEach(task => {
+            UI.taskTemplate(task.getTitle(), task.getDueDate());
+        })
+    }
+
+    static clearTasks() {
+        const tasks = document.querySelectorAll('.todo-item');
+        tasks.forEach(task => {
+            task.remove();
+        })
+    }
+
     static eventListeners() {
         const sidebarToggle = document.querySelector(".sidebar-toggle");
         const project = document.querySelectorAll('.project');
@@ -237,6 +297,7 @@ export default class UI {
         const renameProjectBtn = document.querySelector('.rename-project');
         const addTaskBtn = document.querySelector('.add-task');
         const closeModalBtn = document.querySelector('.close');
+        const submitTaskBtn = document.querySelector('.submit-item');
 
         sidebarToggle.addEventListener('click', this.toggleSidebarVisibility);
         project.forEach(btn => btn.addEventListener('click', this.selectProject));
@@ -245,6 +306,7 @@ export default class UI {
         form.addEventListener('submit', this.addNewProject);
         addTaskBtn.addEventListener('click', this.displayAddTaskModal);
         closeModalBtn.addEventListener('click', this.closeAddTaskModal);
+        submitTaskBtn.addEventListener('click', this.addTask);
 
         if (deleteProjectBtns) {
             deleteProjectBtns.forEach(button => {
@@ -265,7 +327,9 @@ export default class UI {
     }
 
     static pageLoad() {
+        Storage.updateProjects();
         this.displayProjects();
+        this.displayTasks();
         this.eventListeners();
     }
 }

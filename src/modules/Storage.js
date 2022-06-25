@@ -61,7 +61,7 @@ export default class Storage {
     //Adds item to project and stores values
     static addItemToProject(project, item) {
         const todoList = Storage.getTodoList();
-        todoList.getProject(project).addItemToProject(new TodoItem(item));
+        todoList.getProject(project).addItemToProject(item);
         Storage.storeTodoList(todoList);
         Storage.updateProjects();
     }

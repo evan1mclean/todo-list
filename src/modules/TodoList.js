@@ -73,7 +73,7 @@ export default class TodoList {
             else {
                 let items = project.getItems();
                 items.forEach(item => {
-                    if (isThisWeek(new Date(item.getDueDate()))) {
+                    if (isThisWeek(new Date(item.getDueDate()), { weekStartsOn: 1 })) {
                         thisWeek.addItemToProject(item);
                     }
                 });

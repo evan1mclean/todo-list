@@ -30,6 +30,6 @@ export default class Project {
     }
 
     deleteItemFromProject(item) {
-        this.items.splice(this.items.indexOf(this.getItemFromProject(item)), 1);
+        this.items.splice(this.items.findIndex(currentItem => currentItem.title === item.title), 1);      
     }
 }

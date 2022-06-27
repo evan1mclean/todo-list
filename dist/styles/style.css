@@ -165,6 +165,10 @@ button.selected {
     font-size: 2rem;
 }
 
+.add-task {
+    font-weight: bold;
+}
+
 .todo-list {
     height: inherit;
     width: 70%;
@@ -228,7 +232,8 @@ button.selected {
     font-size: 1.5rem;
 }
 
-.todo-item-expanded .item-header .close {
+.todo-item-expanded .item-header .close,
+.todo-item-expanded .item-header .close-task {
     font-weight: bold;
     margin-left: auto;
 }
@@ -309,16 +314,20 @@ button.selected {
     border-radius: 5px;
 }
 
-.add-item-form .submit-item {
+.add-item-form .submit-item,
+.add-item-form .confirm-edit {
     margin-top: auto;
     align-self: center;
-    text-align: center;
-    width: 100px;
+    width: 125px;
     padding: 10px;
     background-color: var(--border-color);
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.add-item-form .submit-item:hover {
+.add-item-form .submit-item:hover,
+.add-item-form .confirm-edit:hover {
     background-color: var(--background-color);
 }

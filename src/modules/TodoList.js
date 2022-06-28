@@ -26,6 +26,7 @@ export default class TodoList {
         this.projects.splice(this.projects.indexOf(this.getProject(project)), 1);
     }
 
+    //Clears the inbox tasks and repopulates from every project that isn't today or this week
     updateInbox() {
         let inbox = this.getProject("Inbox");
         inbox.resetItems();
@@ -43,6 +44,7 @@ export default class TodoList {
         });
     }
 
+    //Clears todays tasks and repopulates from every project that isn't inbox or this week if the due date is today
     updateTodaysItems() {
         let today = this.getProject("Today");
         today.resetItems();
@@ -62,6 +64,7 @@ export default class TodoList {
         });
     }
 
+    ///Clears this weeks tasks and repopulates from every project that isn't inbox or todayif the due date is this week
     updateThisWeeksItems() {
         let thisWeek = this.getProject("This Week");
         thisWeek.resetItems();

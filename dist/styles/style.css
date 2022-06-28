@@ -1,4 +1,5 @@
 :root {
+    color: black;
     --background-color: #53917E;
     --border-color: #915366;
     --border: 2px solid var(--border-color);

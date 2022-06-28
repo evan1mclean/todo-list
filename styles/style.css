@@ -159,6 +159,7 @@ button.selected {
     padding-top: 40px;
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
 }
 
 .todo-header {
@@ -330,4 +331,70 @@ button.selected {
 .add-item-form .submit-item:hover,
 .add-item-form .confirm-edit:hover {
     background-color: var(--background-color);
+}
+
+@media only screen and (max-width: 900px) {
+    .project-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header {
+        width: 100%;
+        padding: 0;
+        border-bottom: var(--border);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .todo-list {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .due-date {
+        display: none;
+    }
+
+   .sidebar-toggle {
+        position: absolute;
+        left: 15px;
+   }
+
+    .sidebar {
+        border: none;
+        width: inherit;
+        padding: 0 15px;
+        height: 0;
+    }
+
+    .sidebar.collapse {
+        height: 100%;
+        width: inherit;
+        transition: all 0.3s;
+        padding: 15px;
+    }
+
+    .sidebar h2 {
+        margin: 0;
+    }
+
+    .sidebar button {
+        margin: 0px;
+    }
+
+    .sidebar button .delete-project,
+    .sidebar button .edit-project {
+        visibility: visible;
+        font-weight: bold;
+    }
+
+    .todo-list-container {
+        height: 100%;
+    }
+
+    .modal-content {
+        width: 300px;
+        left: calc(50% - 175px);
+    }
 }

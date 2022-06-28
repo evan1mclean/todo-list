@@ -164,6 +164,7 @@ export default class UI {
         }
     }
 
+    //A function for hiding edit/delete buttons. Used when renaming projects or adding new projects
     static toggleProjectButtons() {
         const editButtons = document.querySelectorAll(".edit-project");
         const deleteButtons = document.querySelectorAll(".delete-project");
@@ -272,11 +273,12 @@ export default class UI {
         const addTaskBtn = document.querySelector('.add-task');
         const newItem = document.createElement('div');
         newItem.classList.add('todo-item');
+        //If a task is completed, render it with the checkbox already checked, else render it normally
         if (completed) {
             newItem.innerHTML = `<input type="checkbox" class="completed" checked>
                 <p>${title}</p>
                 <button class="item-details">Details</button>
-                <p>${format(new Date(dueDate), 'P')}</p>
+                <p class="due-date">${format(new Date(dueDate), 'P')}</p>
                 <i class="fa-solid fa-pen-to-square"></i>
                 <i class="fa-solid fa-trash-can"></i>`;
         }
@@ -284,7 +286,7 @@ export default class UI {
             newItem.innerHTML = `<input type="checkbox" class="completed">
                 <p>${title}</p>
                 <button class="item-details">Details</button>
-                <p>${format(new Date(dueDate), 'P')}</p>
+                <p class="due-date">${format(new Date(dueDate), 'P')}</p>
                 <i class="fa-solid fa-pen-to-square edit-task"></i>
                 <i class="fa-solid fa-trash-can delete-task"></i>`;
         }
@@ -342,6 +344,7 @@ export default class UI {
                 <p>${item.priority}</p>
                 <p>${completed}</p>
             </div>`;
+        //changes where it's rendered depending on how many tasks exist
         if (todos.length === 1) {
             itemElement.remove();
             todoContainer.appendChild(container);
@@ -385,6 +388,7 @@ export default class UI {
         UI.eventListeners();
     }
 
+    //Redisplays the add task modal and modifies it for editing current tasks
     static displayTaskEditForm(e) {
         const todoHeader = document.querySelector('.todo-header').textContent;
         const itemTitle = e.target.parentElement.textContent.trim().split("\n")[0];
@@ -448,6 +452,7 @@ export default class UI {
 
     }
 
+    //closes the modal and returns it back to it's original values
     static closeTaskEditForm() {
         const modal = document.querySelector('.modal');
         const modalContent = document.querySelector('.modal-content')
@@ -473,6 +478,7 @@ export default class UI {
         UI.eventListeners();
     }
 
+    //function for calling all of the event listeners on the page
     static eventListeners() {
         const sidebarToggle = document.querySelector(".sidebar-toggle");
         const project = document.querySelectorAll('.project');
@@ -550,6 +556,7 @@ export default class UI {
         }
     }
 
+    //Function for what happens when the page is loaded
     static pageLoad() {
         Storage.updateProjects();
         this.displayProjects();
